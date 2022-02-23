@@ -1,0 +1,33 @@
+{
+  "name": "doshop-backend",
+  "version": "1.0.0",
+  "description": "API server for Doshop.",
+  "main": "Server.js",
+  "scripts": {
+    "dev": "nodemon -w src --exec \"babel-node src\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vijayrajdev/Doshop-backend.git"
+  },
+  "author": "Vijay Raj",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Vijayrajdev/Doshop-backend/issues"
+  },
+  "homepage": "https://github.com/Vijayrajdev/Doshop-backend#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.2",
+    "mongoose": "^6.2.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.17.0",
+    "@babel/core": "^7.17.2",
+    "@babel/node": "^7.16.8",
+    "@babel/plugin-transform-runtime": "^7.17.0",
+    "@babel/preset-env": "^7.16.11",
+    "nodemon": "^2.0.15"
+  }
+}
