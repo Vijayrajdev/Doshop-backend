@@ -27,6 +27,26 @@ router.get("/all", async (req, res) => {
 });
 
 /*
+Route           - /api/v1/product/all
+Query           - categoryID
+Description     - Get all the products
+Access          - PUBLIC
+Parameter       - NONE
+Method          - GET
+*/
+
+router.get("/all", async (req, res) => {
+  try {
+    const { categoryId } = req.query;
+    const products = await Product.find({ category: categoryId });
+    res.send({ products });
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({ categories: [] });
+  }
+});
+
+/*
 Route           - /api/v1/product/addProduct
 Description     - To add a new product
 Access          - PRIVATE
