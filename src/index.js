@@ -25,7 +25,7 @@ app.use("/api/v1/category", categoryRoutes);
 app.use("/api/v1/product", productRoutes);
 
 // Listen to port
-const PORT = process.env.PORT || "3000";
+const PORT = process.env.PORT || "4000";
 app.listen(PORT, (req, res) => {
   console.log(`Server is up and running on port ${PORT}`);
 });
