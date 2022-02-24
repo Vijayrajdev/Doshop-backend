@@ -5,7 +5,7 @@ import { body, validationResult } from "express-validator";
 // Router
 const router = Router();
 
-// Routes
+// ROUTES
 
 /*
 Route           - /api/v1/category/all

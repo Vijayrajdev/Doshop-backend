@@ -3,7 +3,8 @@ import { config } from "dotenv";
 import connectDB from "./Services/mongodb/connectDB";
 import cors from "cors";
 import authRoutes from "./Routes/authRoute";
-import categoryRoutes from "./Routes/categoryRoutes"
+import categoryRoutes from "./Routes/categoryRoutes";
+import productRoutes from "./Routes/productRoute";
 
 // Environment variables
 config();
@@ -21,6 +22,7 @@ connectDB();
 // Routes
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/category", categoryRoutes);
+app.use("/api/v1/product", productRoutes);
 
 // Listen to port
 const PORT = process.env.PORT || "3000";

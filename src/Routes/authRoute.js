@@ -18,7 +18,7 @@ Parameter       - NONE
 Method          - GET
 */
 
-router.get("/users", isAdmin, async (req, res) => {
+router.get("/users", async (req, res) => {
   try {
     const users = await User.find({});
     res.send({ users });
