@@ -92,7 +92,7 @@ router.delete("/delete/:id", async (req, res) => {
   const { id } = req.params;
   try {
     const category = await Category.findByIdAndRemove(id);
-    res.send({ Message: "Sucessfully deleted!!!", Category });
+    res.send({ Message: "Sucessfully deleted!!!" });
   } catch (error) {
     console.log(error.message);
     res.json({
