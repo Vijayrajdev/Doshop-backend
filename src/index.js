@@ -24,7 +24,7 @@ connectDB();
 
 // Default route
 app.get("/", (req, res) => {
-  res.send(`Server is running on port${PORT}`);
+  res.send(`Server is running on port ${PORT}`);
 });
 
 // Routes
