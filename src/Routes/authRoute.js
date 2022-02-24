@@ -3,7 +3,7 @@ import User from "../Services/mongodb/models/User";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import isAdmin from "../Middlewares/isAdmin";
-import isAuthenticated from "../Middlewares/isAuthenticated";
+import { body, validationResult } from "express-validator";
 
 // Router
 const router = Router();
@@ -36,28 +36,40 @@ Parameter       - NONE
 Method          - POST
 */
 
-router.post("/signup", async (req, res) => {
-  try {
-    const { firstName, lastName, email, password } = req.body;
+router.post(
+  "/signup",
+  body("firstName").isLength({ min: 5 }),
+  body("email").isEmail(),
+  body("password").isLength({ min: 5 }),
+  async (req, res) => {
+    const error = validationResult(req);
+    if (!error.isEmpty()) {
+      return res
+        .status(403)
+        .send({ Error: error.array(), Message: "Bad request" });
+    }
+    try {
+      const { firstName, lastName, email, password } = req.body;
 
-    // Bcrypt password hashing
-    const salt = await bcrypt.genSalt(5);
-    const hash = await bcrypt.hash(password, salt);
+      // Bcrypt password hashing
+      const salt = await bcrypt.genSalt(5);
+      const hash = await bcrypt.hash(password, salt);
 
-    // Storing hashed password
-    const user = await new User({
-      firstName,
-      lastName,
-      email,
-      password: hash,
-    });
-    await user.save();
-    res.send({ user });
-  } catch (error) {
-    console.log(error.message);
-    res.status(500).json({ users: [] });
+      // Storing hashed password
+      const user = await new User({
+        firstName,
+        lastName,
+        email,
+        password: hash,
+      });
+      await user.save();
+      res.send({ user });
+    } catch (error) {
+      console.log(error.message);
+      res.status(500).json({ users: [] });
+    }
   }
-});
+);
 
 /*
 Route           - /api/v1/auth/login

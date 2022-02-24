@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 
 const isAdmin = (req, res, next) => {
   const token = req.headers.authorization.split(" ")[0];
-  console.log(token);
+
   if (token) {
     const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
     const { role } = decodedToken;
